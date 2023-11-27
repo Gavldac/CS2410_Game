@@ -49,12 +49,11 @@ public class Player : MonoBehaviour
         {
             //Input.GetAxis() allows us to use the A or D keys for horizontal movement. 
             //Return value is -1 or 1 for left and right respectively. Needs a speed multiplier.
-            player.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, player.velocity.y);
+            player.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, player.velocity.y);
 
             //Jump key and amount of jumps checker
-            if (Input.GetKey(KeyCode.Space) && amountJump < 2)
+            if (Input.GetKey(KeyCode.Space) && IsGrounded())
             {
-                amountJump++;
                 player.velocity = new Vector2(player.velocity.x, speed);
             }
         }
