@@ -205,9 +205,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacles: {fileID: 0}
   sprite: {fileID: 4654581270787532911}
-  speed: 10
   velocity: 0
   groundCheck: {fileID: 5706291093754865438}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
+  GameOver: {fileID: 0}
+  speed: 10
+  amountJump: 0

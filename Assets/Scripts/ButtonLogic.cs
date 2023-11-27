@@ -7,6 +7,6 @@ public class ButtonLogic : MonoBehaviour
 {
     public void LoadGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("TestScene");
     }
 }

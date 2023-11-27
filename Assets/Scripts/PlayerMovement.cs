@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
             player.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, player.velocity.y);
 
             //Jump key and amount of jumps checker
-            if (Input.GetKey(KeyCode.Space) && amountJump < 2)
+            if (Input.GetKey(KeyCode.Space) && IsGrounded());
             {
                 amountJump++;
                 player.velocity = new Vector2(player.velocity.x, speed);
@@ -63,19 +63,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Used to check collisions and reverts the amount of jumps back to zero.
-    /// </summary>
-    /// <param name="collision"></param>
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Ground")
-        {
-            amountJump = 0;
-            Debug.Log("Enter");
-            Debug.Log(amountJump);
-        }
-    }
+    
     
     /// <summary>
     /// Creates a circle at player's feet. If it collides with the ground layer, then it will return true
