@@ -44,9 +44,6 @@ public class Player : MonoBehaviour
         {
             sprite.flipX = false;
         }
-        //Jump key checker
-        if (Input.GetKey(KeyCode.Space) && IsGrounded())
-            player.velocity = new Vector2(player.velocity.x, speed);
         //Allows the player to move only if the Game Over screen isn't visible.
         if (GameOver.activeSelf == false)
         {
