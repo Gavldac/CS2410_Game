@@ -6,12 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class SpikeScript : MonoBehaviour
 {
-    public GameObject player;
+    public GameObject player, GameOver, Health1, Health2, Health3;
+    int health;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.name == "Player")
         {
-            GameObject.Destroy(collision.gameObject);
+            health = 0;
+            player.SetActive(false);
+            GameOver.SetActive(true);
+        }
+        if(health == 0)
+        {
+            Health1.SetActive(false);
+            Health2.SetActive(false);
+            Health3.SetActive(false);
         }
     }
     

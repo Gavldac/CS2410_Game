@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject GameOver, Health1, Health2, Health3;
+    public GameObject GameOver, Health1, Health2, Health3, Player;
     public static int health = 3;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
         //Allows the enemy object to move only if the Game Over screen isn't visible.
         if (GameOver.activeSelf == false)
         {
-            Vector3 horizontal = new Vector3(Mathf.PingPong(Time.time * 4, 8), transform.position.y, transform.position.z);
+            Vector3 horizontal = new Vector3(transform.position.x + Mathf.PingPong(Time.time * 4, 8), transform.position.y, transform.position.z);
             transform.position = horizontal;
         }
     }
@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
             {
                 Health1.SetActive(false);
                 GameOver.SetActive(true);
+                Player.SetActive(false);
             }
         }
     }

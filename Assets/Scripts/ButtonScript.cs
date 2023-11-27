@@ -20,12 +20,13 @@ public class ButtonScript : MonoBehaviour
     /// </summary>
     void TaskOnClick()
     {
+        Player.SetActive(true);
         GameOver.SetActive(false);
         Enemy.health = 3;
         Health1.SetActive(true);
         Health2.SetActive(true);
         Health3.SetActive(true);
         PlayerMove = Player.GetComponent<Transform>();
-        PlayerMove.position = new Vector3(-7.41f, -2.31f, 0.0f);
+        PlayerMove.position = new Vector3(-2.6f, -0.17f, 0.0f);
     }
 }

@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
     /// <param name="collision"></param>
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Ground")
+        if (collision.gameObject.name == "Tilemap")
         {
             amountJump = 0;
             Debug.Log("Enter");
