@@ -32,5 +32,6 @@ public class ButtonScript : MonoBehaviour
         PlayerMove.position = Player.firstPlayerPosition;
         musicSource.clip = goobaStomp;
         musicSource.Play();
+        AudioScript.playOnce = true;
     }
 }

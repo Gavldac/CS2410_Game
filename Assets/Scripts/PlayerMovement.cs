@@ -40,17 +40,7 @@ public class Player : MonoBehaviour
             velocity = player.velocity.x;
             //Input.GetAxis() allows us to use the A or D keys for horizontal movement. 
             //Return value is -1 or 1 for left and right respectively. Needs a speed multiplier.
-            horizontal = Input.GetAxisRaw("Horizontal");
-            player.velocity = new Vector2(horizontal * speed, player.velocity.y);
-        
-            if(horizontal <= -1)
-            {
-                sprite.flipX = true;
-            }
-            else if(horizontal >= 1)
-            {
-                sprite.flipX = false;
-            }
+            
 
             if (wallJumpCooldown > 0.2f)
             {
@@ -60,7 +50,19 @@ public class Player : MonoBehaviour
                     player.velocity = Vector2.zero;
                 }
                 else
+                {
+                    horizontal = Input.GetAxisRaw("Horizontal");
+                    player.velocity = new Vector2(horizontal * speed, player.velocity.y);
+                    if (horizontal <= -1)
+                    {
+                        sprite.flipX = true;
+                    }
+                    else if (horizontal >= 1)
+                    {
+                        sprite.flipX = false;
+                    }
                     player.gravityScale = 1.7f;
+                }
                 if (Input.GetKey(KeyCode.Space))
                 {
                     Jump();
@@ -81,7 +83,7 @@ public class Player : MonoBehaviour
         else if (OnWall() && !IsGrounded())
         {
             print(transform.localScale.x);
-            player.velocity = new Vector2(Mathf.Sign(-horizontal) * 3, 6);
+            player.velocity = new Vector2(-horizontal * 6, 6);
             wallJumpCooldown = 0;
             
         }
