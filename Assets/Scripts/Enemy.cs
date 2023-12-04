@@ -8,13 +8,13 @@ public class Enemy : MonoBehaviour
     public GameObject GameOver, Health1, Health2, Health3, Player;
     public SpriteRenderer sprite;
     public static int health = 3;
-    public float min;
-    public float max;
+    public float size, speed;
+    private float min, max;
     // Start is called before the first frame update
     void Start()
     {
         min = transform.position.x;
-        max = transform.position.x + 5;
+        max = transform.position.x + size;
     }
 
     // Update is called once per frame
@@ -23,14 +23,14 @@ public class Enemy : MonoBehaviour
         //Allows the enemy object to move only if the Game Over screen isn't visible.
         if (GameOver.activeSelf == false)
         {
-            float pingpong = Mathf.PingPong(Time.time * 2, max - min) + min;
+            float pingpong = Mathf.PingPong(Time.time * speed, max - min) + min;
             Vector3 horizontal = new Vector3(pingpong, transform.position.y, transform.position.z);
             transform.position = horizontal;
-            if (pingpong <= 23.55)
+            if (pingpong <= min + 0.01)
             {
                 sprite.flipX = false;
             }
-            else if (pingpong >= 28.5)
+            else if (pingpong >= max - 0.01)
             {
                 sprite.flipX = true;
             }

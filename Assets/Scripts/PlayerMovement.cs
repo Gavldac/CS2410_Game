@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -11,65 +12,78 @@ public class Player : MonoBehaviour
     public SpriteRenderer sprite;
     private Rigidbody2D player;
     [SerializeField] private float velocity;
-    public Transform groundCheck;
-    public LayerMask groundLayer;
+    public Transform groundCheck, wallsCheck;
+    public LayerMask groundLayer, wallsLayer;
     public GameObject GameOver;
     [SerializeField] private float speed;
-    public int amountJump = 0;
-
+    public static Vector3 firstPlayerPosition;
+    private BoxCollider2D boxCollider;
+    public float wallJumpCooldown;
+    float horizontal;
 
     // Start is called before the first frame update
     void Start()
     {
         //get the RigidBody references from Unity Editor
         player = GetComponent<Rigidbody2D>(); 
+        boxCollider = GetComponent<BoxCollider2D>();
+        firstPlayerPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //This is so we can track the player's velocity
-        velocity = player.velocity.x;
-        //Input.GetAxis() allows us to use the A or D keys for horizontal movement. 
-        //Return value is -1 or 1 for left and right respectively. Needs a speed multiplier.
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        player.velocity = new Vector2(horizontal * speed, player.velocity.y);
-        
-        if(horizontal <= -1)
-        {
-            sprite.flipX = true;
-        }
-        else if(horizontal >= 1)
-        {
-            sprite.flipX = false;
-        }
         //Allows the player to move only if the Game Over screen isn't visible.
         if (GameOver.activeSelf == false)
         {
+            //This is so we can track the player's velocity
+            velocity = player.velocity.x;
             //Input.GetAxis() allows us to use the A or D keys for horizontal movement. 
             //Return value is -1 or 1 for left and right respectively. Needs a speed multiplier.
-            player.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, player.velocity.y);
-
-            //Jump key and amount of jumps checker
-            if (Input.GetKey(KeyCode.Space) && IsGrounded())
+            horizontal = Input.GetAxisRaw("Horizontal");
+            player.velocity = new Vector2(horizontal * speed, player.velocity.y);
+        
+            if(horizontal <= -1)
             {
-                player.velocity = new Vector2(player.velocity.x, speed);
+                sprite.flipX = true;
             }
+            else if(horizontal >= 1)
+            {
+                sprite.flipX = false;
+            }
+
+            if (wallJumpCooldown > 0.2f)
+            {
+                if (OnWall() && !IsGrounded())
+                {
+                    player.gravityScale = 1.5f;
+                    player.velocity = Vector2.zero;
+                }
+                else
+                    player.gravityScale = 1.7f;
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    Jump();
+                }
+            }
+            else
+                wallJumpCooldown += Time.deltaTime;
+            
         }
     }
 
-    /// <summary>
-    /// Used to check collisions and reverts the amount of jumps back to zero.
-    /// </summary>
-    /// <param name="collision"></param>
-    void OnCollisionEnter2D(Collision2D collision)
+    private void Jump()
     {
-        if (collision.gameObject.name == "Tilemap")
+        if (IsGrounded())
         {
-            amountJump = 0;
-            Debug.Log("Enter");
-            Debug.Log(amountJump);
+            player.velocity = new Vector2(player.velocity.x, speed);
+        }
+        else if (OnWall() && !IsGrounded())
+        {
+            print(transform.localScale.x);
+            player.velocity = new Vector2(Mathf.Sign(-horizontal) * 3, 6);
+            wallJumpCooldown = 0;
+            
         }
     }
     
@@ -79,7 +93,12 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        return raycastHit.collider != null;
     }
-
+    private bool OnWall()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(horizontal, 0), 0.1f, wallsLayer);
+        return raycastHit.collider != null;
+    }
 }

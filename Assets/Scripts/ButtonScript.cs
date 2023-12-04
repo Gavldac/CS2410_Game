@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour
 {
-    public GameObject GameOver, Player, Health1, Health2, Health3;
+    public GameObject GameOver, player, Health1, Health2, Health3;
     Transform PlayerMove;
     public Button Retry;
+    [SerializeField] AudioSource musicSource;
+    public AudioClip goobaStomp;
 
     void Start()
     {
@@ -20,13 +22,15 @@ public class ButtonScript : MonoBehaviour
     /// </summary>
     void TaskOnClick()
     {
-        Player.SetActive(true);
+        player.SetActive(true);
         GameOver.SetActive(false);
         Enemy.health = 3;
         Health1.SetActive(true);
         Health2.SetActive(true);
         Health3.SetActive(true);
-        PlayerMove = Player.GetComponent<Transform>();
-        PlayerMove.position = new Vector3(-2.6f, -0.17f, 0.0f);
+        PlayerMove = player.GetComponent<Transform>();
+        PlayerMove.position = Player.firstPlayerPosition;
+        musicSource.clip = goobaStomp;
+        musicSource.Play();
     }
 }
