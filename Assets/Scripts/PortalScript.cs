@@ -23,7 +23,7 @@ public class PortalScript : MonoBehaviour
         if(keys == keyAmount)
         {
             portal.SetActive(true);
-            shadow.SetActive(false);
+            shadow.SetActive(true);
             platform.SetActive(true);
         }
         if(keys == 0)
