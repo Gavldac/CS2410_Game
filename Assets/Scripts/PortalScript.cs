@@ -9,8 +9,7 @@ using UnityEngine.SceneManagement;
 public class PortalScript : MonoBehaviour
 {
     public GameObject portal, shadow, platform;
-    public int  sceneIndex;
-    [SerializeField] public int keyAmount;
+    public int keyAmount, sceneIndex;
     public static int keys;
     // Start is called before the first frame update
     void Start()
