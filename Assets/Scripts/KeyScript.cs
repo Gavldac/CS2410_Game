@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyScript : MonoBehaviour
 {
-    public GameObject Key1,Key2,Key3, gameOver;
+    public GameObject Key1, Key2, Key3, gameOver;
     public GameObject HUDKey1, HUDKey2, HUDKey3;
     public List<GameObject> KeyList; 
     public List<GameObject> HUDKeyList;
@@ -12,6 +12,7 @@ public class KeyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameOver.SetActive(false);
         HUDKeyList = new List<GameObject> { HUDKey1,HUDKey2,HUDKey3 };
         KeyList = new List<GameObject> { Key1, Key2, Key3 };
 
@@ -24,7 +25,14 @@ public class KeyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (gameOver.activeSelf == true)
+        {
+            index = 0;
+            foreach(GameObject key in HUDKeyList)
+            {
+                key.SetActive(false);
+            }
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
