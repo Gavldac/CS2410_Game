@@ -1495,6 +1495,7 @@ MonoBehaviour:
   shadow: {fileID: 1002714996}
   platform: {fileID: 0}
   keyAmount: 1
+  sceneIndex: 2
 --- !u!4 &1073733506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2882679777018302124, guid: 8b3ea7319d9d7814586cf90d6d3d7df5, type: 3}
@@ -1771,6 +1772,7 @@ MonoBehaviour:
   shadow: {fileID: 1002714996}
   platform: {fileID: 0}
   keyAmount: 1
+  sceneIndex: 2
 --- !u!114 &1178036216
 MonoBehaviour:
   m_ObjectHideFlags: 0

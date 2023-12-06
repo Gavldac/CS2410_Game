@@ -778,7 +778,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   death: {fileID: 0}
   musicSource: {fileID: 301874540}
+  deathSource: {fileID: 1857731064}
   goobaStomp: {fileID: 8300000, guid: 29ebf05b9f106052db3a728c1b288ac9, type: 3}
+  deathSound: {fileID: 0}
 --- !u!82 &1857731064
 AudioSource:
   m_ObjectHideFlags: 0

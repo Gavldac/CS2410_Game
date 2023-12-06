@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class PortalScript : MonoBehaviour
 {
     public GameObject portal, shadow, platform;
-    public int keyAmount;
+    public int keyAmount, sceneIndex;
     public static int keys;
     // Start is called before the first frame update
     void Start()
@@ -37,6 +37,6 @@ public class PortalScript : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
             Debug.Log(SceneManager.GetActiveScene().ToString());
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(sceneIndex);
     }
 }
