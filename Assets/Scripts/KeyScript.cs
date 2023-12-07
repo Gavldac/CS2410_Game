@@ -50,6 +50,8 @@ public class KeyScript : MonoBehaviour
     /// </summary>
     public void Reset()
     {
+        PortalScript.keys = 0;
+        
         foreach (GameObject HUDKey in HUDKeyList)
         {
             HUDKey.SetActive(false);

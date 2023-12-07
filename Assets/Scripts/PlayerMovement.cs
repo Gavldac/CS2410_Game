@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public Tilemap obstacles;
     public SpriteRenderer sprite;
     private Rigidbody2D player;
-    [SerializeField] public float deathLevel;
+    //[SerializeField] public float deathLevel;
     [SerializeField] private float velocity;
     public Transform groundCheck, wallsCheck;
     public LayerMask groundLayer, wallsLayer;
@@ -72,10 +72,10 @@ public class Player : MonoBehaviour
             else
                 wallJumpCooldown += Time.deltaTime;
             
-            if(transform.position.y <= deathLevel)
-            {
-                GameOver.SetActive(true);
-            }
+            //if(transform.position.y <= deathLevel)
+            //{
+            //    GameOver.SetActive(true);
+            //}
         }
     }
 
