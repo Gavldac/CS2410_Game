@@ -779,7 +779,7 @@ Transform:
   m_GameObject: {fileID: 534938143}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.25, y: 26.95, z: 0}
+  m_LocalPosition: {x: -49.1, y: -79.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1919,8 +1919,8 @@ MonoBehaviour:
   portal: {fileID: 1073733501}
   shadow: {fileID: 1002714996}
   platform: {fileID: 1139504006}
-  keyAmount: 1
   sceneIndex: 2
+  keyAmount: 1
 --- !u!4 &1073733506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2882679777018302124, guid: 8b3ea7319d9d7814586cf90d6d3d7df5, type: 3}
@@ -2339,8 +2339,8 @@ MonoBehaviour:
   portal: {fileID: 1073733501}
   shadow: {fileID: 1002714996}
   platform: {fileID: 1139504006}
-  keyAmount: 1
   sceneIndex: 2
+  keyAmount: 1
 --- !u!114 &1178036216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26083,6 +26083,10 @@ PrefabInstance:
       propertyPath: obstacles
       value: 
       objectReference: {fileID: 1601617477}
+    - target: {fileID: 4065421797954718630, guid: 4ab3793f0a450824992c7374728126d9, type: 3}
+      propertyPath: deathLevel
+      value: -79.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4065421797954718630, guid: 4ab3793f0a450824992c7374728126d9, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 8
